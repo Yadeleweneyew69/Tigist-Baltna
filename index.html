@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html lang="am">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ትግስት ባልትና - ቅርጽ የተደረገ ምርቶች</title>
-    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+    <title>Tigist Baltena - Products & Contact</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
       * {
         margin: 0;
@@ -17,8 +21,8 @@
         background: linear-gradient(135deg, #f5f7fa 0%, #e4efe9 100%);
         color: #2c3e50;
         line-height: 1.6;
-        padding: 20px;
         min-height: 100vh;
+        padding: 15px;
       }
 
       .container {
@@ -38,24 +42,24 @@
       }
 
       h1 {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
         margin-bottom: 10px;
       }
 
       .amharic-title {
-        font-size: 2rem;
+        font-size: 1.8rem;
         font-weight: bold;
         margin: 15px 0;
         color: #f1c40f;
       }
 
       .subtitle {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         opacity: 0.9;
       }
 
       .content {
-        padding: 30px;
+        padding: 25px;
       }
 
       .section {
@@ -67,20 +71,20 @@
         border-bottom: 2px solid #ecf0f1;
         padding-bottom: 10px;
         margin-bottom: 20px;
-        font-size: 1.8rem;
+        font-size: 1.6rem;
       }
 
       .products {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
-        margin-bottom: 30px;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+        margin-bottom: 25px;
       }
 
       .product {
         background: #f8f9fa;
         border-radius: 10px;
-        padding: 20px;
+        padding: 15px;
         text-align: center;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         transition: transform 0.3s ease;
@@ -92,13 +96,13 @@
       }
 
       .product-icon {
-        font-size: 2.5rem;
-        margin-bottom: 15px;
+        font-size: 2rem;
+        margin-bottom: 10px;
         color: #27ae60;
       }
 
       .product-name {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         font-weight: bold;
         color: #2c3e50;
       }
@@ -108,102 +112,255 @@
         padding: 20px;
         border-radius: 10px;
         margin: 20px 0;
-        font-size: 1.1rem;
-        line-height: 1.8;
+        font-size: 1rem;
+        line-height: 1.7;
       }
 
-      .contact-info {
-        background: #f9f9f9;
-        padding: 25px;
-        border-radius: 10px;
+      .contact-options {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
         margin: 20px 0;
       }
 
-      .contact-methods {
+      .contact-card {
+        background: #f8f9fa;
+        border-radius: 12px;
+        padding: 15px;
         display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        justify-content: center;
-      }
-
-      .contact-method {
-        flex: 1;
-        min-width: 250px;
+        flex-direction: column;
+        align-items: center;
         text-align: center;
-        padding: 20px;
-        background: white;
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        transition: all 0.3s ease;
+        transition: transform 0.3s, box-shadow 0.3s;
+        border: 1px solid #e9ecef;
+      }
+
+      .contact-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .icon {
+        width: 50px;
+        height: 50px;
+        background: #4a00e0;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        margin-bottom: 12px;
+      }
+
+      .contact-card h3 {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+        color: #343a40;
+      }
+
+      .contact-info {
+        font-size: 1rem;
+        margin-bottom: 12px;
+        color: #495057;
+        font-weight: 500;
+        word-break: break-word;
+      }
+
+      .btn {
+        display: inline-block;
+        background: #4a00e0;
+        color: white;
+        padding: 8px 16px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background 0.3s;
+        margin-top: 8px;
+        font-size: 0.9rem;
+        width: 100%;
+        max-width: 180px;
         cursor: pointer;
+        border: none;
       }
 
-      .contact-method:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        background: #f0f7ff;
+      .btn:hover {
+        background: #3575fc;
       }
 
-      .contact-icon {
-        font-size: 2rem;
-        margin-bottom: 15px;
-        color: #3498db;
+      .qr-section {
+        padding: 15px;
+        text-align: center;
+        background: #f1f3f5;
+        border-top: 1px solid #dee2e6;
       }
 
       .qr-codes {
         display: flex;
         flex-wrap: wrap;
-        gap: 30px;
+        gap: 20px;
         justify-content: center;
-        margin: 30px 0;
+        margin: 20px 0;
       }
 
       .qr-code {
         text-align: center;
+        background: white;
+        padding: 12px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       }
 
       .qr-code canvas {
-        border: 10px solid white;
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border: 5px solid white;
+        border-radius: 5px;
       }
 
       .qr-label {
         display: block;
-        margin-top: 10px;
+        margin-top: 8px;
         font-weight: bold;
         color: #2c3e50;
+        font-size: 0.9rem;
+      }
+
+      .instruction {
+        margin-top: 12px;
+        color: #6c757d;
+        font-size: 0.85rem;
       }
 
       footer {
         text-align: center;
         padding: 20px;
-        background: #2c3e50;
-        color: white;
-        margin-top: 30px;
+        color: #6c757d;
+        font-size: 0.9rem;
+        background: #f8f9fa;
+        border-top: 1px solid #e9ecef;
       }
 
+      /* Improved mobile-specific styles */
       @media (max-width: 768px) {
         h1 {
-          font-size: 2rem;
+          font-size: 1.8rem;
         }
 
         .amharic-title {
-          font-size: 1.6rem;
+          font-size: 1.5rem;
         }
 
         .products {
-          grid-template-columns: 1fr;
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         }
 
-        .contact-methods {
-          flex-direction: column;
+        .content {
+          padding: 15px;
         }
 
         .qr-codes {
           flex-direction: column;
           align-items: center;
         }
+
+        .qr-code {
+          width: 100%;
+          max-width: 200px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        body {
+          padding: 10px;
+        }
+
+        .container {
+          border-radius: 12px;
+          margin: 10px auto;
+        }
+
+        header {
+          padding: 20px 15px;
+        }
+
+        header h1 {
+          font-size: 1.6rem;
+        }
+
+        .amharic-title {
+          font-size: 1.3rem;
+        }
+
+        .contact-options {
+          padding: 0 5px;
+          gap: 10px;
+        }
+
+        .contact-card {
+          padding: 12px;
+        }
+
+        .icon {
+          width: 45px;
+          height: 45px;
+          font-size: 18px;
+        }
+
+        .btn {
+          padding: 8px 14px;
+          font-size: 0.85rem;
+        }
+
+        .products {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .product-name {
+          font-size: 1rem;
+        }
+      }
+
+      /* Animation for QR code */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .qr-code {
+        animation: fadeIn 0.5s ease-in;
+      }
+
+      /* Tap highlight color for mobile */
+      .contact-card,
+      .btn {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .contact-method {
+        cursor: pointer;
+      }
+
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .product-item {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+      }
+
+      .product-emoji {
+        font-size: 2rem;
+        margin-bottom: 10px;
       }
     </style>
   </head>
@@ -236,6 +393,32 @@
               <div class="product-name">የሐበሻ አረቄ</div>
             </div>
           </div>
+
+          <h3 style="margin-top: 30px; text-align: center">
+            Additional Products
+          </h3>
+          <div class="product-grid">
+            <div class="product-item">
+              <div class="product-emoji">🌿</div>
+              <div class="product-name">በርበሬ</div>
+            </div>
+            <div class="product-item">
+              <div class="product-emoji">🥣</div>
+              <div class="product-name">ሽሮ</div>
+            </div>
+            <div class="product-item">
+              <div class="product-emoji">🍯</div>
+              <div class="product-name">ወለላ ማር</div>
+            </div>
+            <div class="product-item">
+              <div class="product-emoji">🫓</div>
+              <div class="product-name">የእንጀራ ማር</div>
+            </div>
+            <div class="product-item">
+              <div class="product-emoji">🌰</div>
+              <div class="product-name">ኬኔቶ</div>
+            </div>
+          </div>
         </div>
 
         <div class="description">
@@ -247,27 +430,36 @@
 
         <div class="section">
           <h2>Contact Us</h2>
-          <div class="contact-info">
-            <p>Click on any option below to contact us directly:</p>
-            <div class="contact-methods">
-              <div class="contact-method" onclick="callPhone('0916603839')">
-                <div class="contact-icon">📞</div>
-                <h3>Phone 1</h3>
-                <p>0916603839</p>
-                <p><small>Click to call</small></p>
+          <p>Tap on any option below to contact us directly:</p>
+
+          <div class="contact-options">
+            <div class="contact-card">
+              <div class="icon">
+                <i class="fas fa-phone"></i>
               </div>
-              <div class="contact-method" onclick="callPhone('0712001030')">
-                <div class="contact-icon">📞</div>
-                <h3>Phone 2</h3>
-                <p>0712001030</p>
-                <p><small>Click to call</small></p>
+              <h3>Phone 1</h3>
+              <div class="contact-info">0916603839</div>
+              <a href="tel:0916603839" class="btn">Tap to call</a>
+            </div>
+
+            <div class="contact-card">
+              <div class="icon">
+                <i class="fas fa-phone"></i>
               </div>
-              <div class="contact-method" onclick="openTelegram()">
-                <div class="contact-icon">📱</div>
-                <h3>Telegram</h3>
-                <p>@tigist042329</p>
-                <p><small>Click to open Telegram</small></p>
+              <h3>Phone 2</h3>
+              <div class="contact-info">0712001030</div>
+              <a href="tel:0712001030" class="btn">Tap to call</a>
+            </div>
+
+            <div class="contact-card">
+              <div class="icon">
+                <i class="fab fa-telegram"></i>
               </div>
+              <h3>Telegram</h3>
+              <div class="contact-info">@tigist042329</div>
+              <a href="https://t.me/tigist042329" class="btn" target="_blank"
+                >Open Telegram</a
+              >
             </div>
           </div>
         </div>
@@ -292,21 +484,35 @@
               <span class="qr-label">Telegram</span>
             </div>
           </div>
+          <p class="instruction">
+            Scan these QR codes to save our contact information
+          </p>
         </div>
       </div>
 
       <footer>
-        <p>© 2023 Tigist Baltena - Premium Ethiopian Products</p>
+        <p>
+          © 2023 Tigist Baltena - Premium Ethiopian Products. All rights
+          reserved.
+        </p>
       </footer>
     </div>
 
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
+      // Generate QR codes with all contact information
+      function generateQR() {
         // Product list and contact info
-        const productList = `✅ ምጥን የጠላ እህል
+        const productList = `ትግስት ባልትና - ምርቶች እና አገልግሎቶች
+
+✅ ምጥን የጠላ እህል
 ✅ ድፍድፍ
 ✅ ቅቤ
 ✅ የሐበሻ አረቄ
+✅ በርበሬ
+✅ ሽሮ
+✅ ወለላ ማር
+✅ የእንጀራ ማር
+✅ ኬኔቶ
 
 የዴሊበሪ አገልግሎትም እንሰጣለን፡፡
 
@@ -314,83 +520,77 @@
 
 ☎️ 0916603839 ወይም
 ☎️ 0712001030 ላይ ይደውሉ  ለበለጠ መረጃ ይጠይቁ
-☎️ Telegram account: https://t.me/tigist042329`;
+📱 Telegram account: https://t.me/tigist042329`;
 
         // Generate QR codes
-        QRCode.toCanvas(
-          document.getElementById("qrcode1"),
-          productList,
-          {
-            width: 150,
-            margin: 1,
-            color: {
-              dark: "#2c3e50",
-              light: "#ffffff",
-            },
-          },
-          function (error) {
-            if (error) console.error(error);
-          }
-        );
+        new QRCode(document.getElementById("qrcode1"), {
+          text: productList,
+          width: 120,
+          height: 120,
+          colorDark: "#000000",
+          colorLight: "#ffffff",
+          correctLevel: QRCode.CorrectLevel.H,
+        });
 
-        QRCode.toCanvas(
-          document.getElementById("qrcode2"),
-          "tel:+251916603839",
-          {
-            width: 150,
-            margin: 1,
-            color: {
-              dark: "#2c3e50",
-              light: "#ffffff",
-            },
-          },
-          function (error) {
-            if (error) console.error(error);
-          }
-        );
+        new QRCode(document.getElementById("qrcode2"), {
+          text: "tel:0916603839",
+          width: 120,
+          height: 120,
+          colorDark: "#000000",
+          colorLight: "#ffffff",
+          correctLevel: QRCode.CorrectLevel.H,
+        });
 
-        QRCode.toCanvas(
-          document.getElementById("qrcode3"),
-          "tel:+251712001030",
-          {
-            width: 150,
-            margin: 1,
-            color: {
-              dark: "#2c3e50",
-              light: "#ffffff",
-            },
-          },
-          function (error) {
-            if (error) console.error(error);
-          }
-        );
+        new QRCode(document.getElementById("qrcode3"), {
+          text: "tel:0712001030",
+          width: 120,
+          height: 120,
+          colorDark: "#000000",
+          colorLight: "#ffffff",
+          correctLevel: QRCode.CorrectLevel.H,
+        });
 
-        QRCode.toCanvas(
-          document.getElementById("qrcode4"),
-          "https://t.me/tigist042329",
-          {
-            width: 150,
-            margin: 1,
-            color: {
-              dark: "#2c3e50",
-              light: "#ffffff",
-            },
-          },
-          function (error) {
-            if (error) console.error(error);
-          }
-        );
+        new QRCode(document.getElementById("qrcode4"), {
+          text: "https://t.me/tigist042329",
+          width: 120,
+          height: 120,
+          colorDark: "#000000",
+          colorLight: "#ffffff",
+          correctLevel: QRCode.CorrectLevel.H,
+        });
+      }
+
+      // Generate QR code on page load
+      window.onload = generateQR;
+
+      // Add touch event listeners for better mobile experience
+      document.addEventListener("DOMContentLoaded", function () {
+        const buttons = document.querySelectorAll(".btn");
+        buttons.forEach((button) => {
+          button.addEventListener("touchstart", function () {
+            this.style.opacity = "0.8";
+          });
+
+          button.addEventListener("touchend", function () {
+            this.style.opacity = "1";
+          });
+        });
+
+        // Add click handlers for contact methods
+        const contactMethods = document.querySelectorAll(".contact-card");
+        contactMethods.forEach((method) => {
+          method.addEventListener("click", function () {
+            const link = this.querySelector("a");
+            if (link) {
+              if (link.getAttribute("target") === "_blank") {
+                window.open(link.getAttribute("href"), "_blank");
+              } else {
+                window.location.href = link.getAttribute("href");
+              }
+            }
+          });
+        });
       });
-
-      // Function to handle phone calls
-      function callPhone(number) {
-        window.location.href = "tel:" + number;
-      }
-
-      // Function to open Telegram
-      function openTelegram() {
-        window.open("https://t.me/tigist042329", "_blank");
-      }
     </script>
   </body>
 </html>
