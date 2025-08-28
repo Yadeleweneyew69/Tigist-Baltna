@@ -88,11 +88,13 @@
         text-align: center;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         transition: transform 0.3s ease;
+        cursor: pointer;
       }
 
       .product:hover {
         transform: translateY(-5px);
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        background: #e8f4fc;
       }
 
       .product-icon {
@@ -133,11 +135,13 @@
         text-align: center;
         transition: transform 0.3s, box-shadow 0.3s;
         border: 1px solid #e9ecef;
+        cursor: pointer;
       }
 
       .contact-card:hover {
         transform: translateY(-3px);
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        background: #e8f4fc;
       }
 
       .icon {
@@ -335,12 +339,9 @@
 
       /* Tap highlight color for mobile */
       .contact-card,
-      .btn {
+      .btn,
+      .product {
         -webkit-tap-highlight-color: transparent;
-      }
-
-      .contact-method {
-        cursor: pointer;
       }
 
       .product-grid {
@@ -356,11 +357,26 @@
         border-radius: 10px;
         text-align: center;
         box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      .product-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        background: #e8f4fc;
       }
 
       .product-emoji {
         font-size: 2rem;
         margin-bottom: 10px;
+      }
+
+      .click-hint {
+        font-size: 0.8rem;
+        color: #6c757d;
+        margin-top: 5px;
+        font-style: italic;
       }
     </style>
   </head>
@@ -375,20 +391,23 @@
       <div class="content">
         <div class="section">
           <h2>Our Products</h2>
+          <p class="click-hint">
+            (Click on any products and write any order on Telegram)
+          </p>
           <div class="products">
-            <div class="product">
+            <div class="product" onclick="openTelegram()">
               <div class="product-icon">🌾</div>
               <div class="product-name">ምጥን የጠላ እህል</div>
             </div>
-            <div class="product">
+            <div class="product" onclick="openTelegram()">
               <div class="product-icon">🥣</div>
               <div class="product-name">ድፍድፍ</div>
             </div>
-            <div class="product">
+            <div class="product" onclick="openTelegram()">
               <div class="product-icon">🫕</div>
               <div class="product-name">ቅቤ</div>
             </div>
-            <div class="product">
+            <div class="product" onclick="openTelegram()">
               <div class="product-icon">🧂</div>
               <div class="product-name">የሐበሻ አረቄ</div>
             </div>
@@ -398,23 +417,23 @@
             Additional Products
           </h3>
           <div class="product-grid">
-            <div class="product-item">
+            <div class="product-item" onclick="openTelegram()">
               <div class="product-emoji">🌿</div>
               <div class="product-name">በርበሬ</div>
             </div>
-            <div class="product-item">
+            <div class="product-item" onclick="openTelegram()">
               <div class="product-emoji">🥣</div>
               <div class="product-name">ሽሮ</div>
             </div>
-            <div class="product-item">
+            <div class="product-item" onclick="openTelegram()">
               <div class="product-emoji">🍯</div>
               <div class="product-name">ወለላ ማር</div>
             </div>
-            <div class="product-item">
+            <div class="product-item" onclick="openTelegram()">
               <div class="product-emoji">🫓</div>
               <div class="product-name">የእንጀራ ማር</div>
             </div>
-            <div class="product-item">
+            <div class="product-item" onclick="openTelegram()">
               <div class="product-emoji">🌰</div>
               <div class="product-name">ኬኔቶ</div>
             </div>
@@ -433,33 +452,31 @@
           <p>Tap on any option below to contact us directly:</p>
 
           <div class="contact-options">
-            <div class="contact-card">
+            <div class="contact-card" onclick="callPhone('0916603839')">
               <div class="icon">
                 <i class="fas fa-phone"></i>
               </div>
               <h3>Phone 1</h3>
               <div class="contact-info">0916603839</div>
-              <a href="tel:0916603839" class="btn">Tap to call</a>
+              <div class="btn">Tap to call</div>
             </div>
 
-            <div class="contact-card">
+            <div class="contact-card" onclick="callPhone('0712001030')">
               <div class="icon">
                 <i class="fas fa-phone"></i>
               </div>
               <h3>Phone 2</h3>
               <div class="contact-info">0712001030</div>
-              <a href="tel:0712001030" class="btn">Tap to call</a>
+              <div class="btn">Tap to call</div>
             </div>
 
-            <div class="contact-card">
+            <div class="contact-card" onclick="openTelegram()">
               <div class="icon">
                 <i class="fab fa-telegram"></i>
               </div>
               <h3>Telegram</h3>
               <div class="contact-info">@tigist042329</div>
-              <a href="https://t.me/tigist042329" class="btn" target="_blank"
-                >Open Telegram</a
-              >
+              <div class="btn">Open Telegram</div>
             </div>
           </div>
         </div>
@@ -560,6 +577,16 @@
         });
       }
 
+      // Function to handle phone calls
+      function callPhone(number) {
+        window.location.href = "tel:" + number;
+      }
+
+      // Function to open Telegram
+      function openTelegram() {
+        window.open("https://t.me/tigist042329", "_blank");
+      }
+
       // Generate QR code on page load
       window.onload = generateQR;
 
@@ -576,19 +603,10 @@
           });
         });
 
-        // Add click handlers for contact methods
-        const contactMethods = document.querySelectorAll(".contact-card");
-        contactMethods.forEach((method) => {
-          method.addEventListener("click", function () {
-            const link = this.querySelector("a");
-            if (link) {
-              if (link.getAttribute("target") === "_blank") {
-                window.open(link.getAttribute("href"), "_blank");
-              } else {
-                window.location.href = link.getAttribute("href");
-              }
-            }
-          });
+        // Add click handlers for products
+        const products = document.querySelectorAll(".product, .product-item");
+        products.forEach((product) => {
+          product.addEventListener("click", openTelegram);
         });
       });
     </script>
