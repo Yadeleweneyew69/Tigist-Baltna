@@ -395,45 +395,50 @@
             (Click on any products and write any order on Telegram)
           </p>
           <div class="products">
-            <div class="product" onclick="openTelegram()">
+            <div
+              class="product"
+              onclick="openTelegramWithProduct('ምጥን የጠላ እህል')"
+            >
               <div class="product-icon">🌾</div>
               <div class="product-name">ምጥን የጠላ እህል</div>
             </div>
-            <div class="product" onclick="openTelegram()">
+            <div class="product" onclick="openTelegramWithProduct('ድፍድፍ')">
               <div class="product-icon">🥣</div>
               <div class="product-name">ድፍድፍ</div>
             </div>
-            <div class="product" onclick="openTelegram()">
+            <div class="product" onclick="openTelegramWithProduct('ቅቤ')">
               <div class="product-icon">🫕</div>
               <div class="product-name">ቅቤ</div>
             </div>
-            <div class="product" onclick="openTelegram()">
+            <div class="product" onclick="openTelegramWithProduct('የሐበሻ አረቄ')">
               <div class="product-icon">🧂</div>
               <div class="product-name">የሐበሻ አረቄ</div>
             </div>
           </div>
-
-          <h3 style="margin-top: 30px; text-align: center">
-            Additional Products
-          </h3>
           <div class="product-grid">
-            <div class="product-item" onclick="openTelegram()">
+            <div class="product-item" onclick="openTelegramWithProduct('በርበሬ')">
               <div class="product-emoji">🌿</div>
               <div class="product-name">በርበሬ</div>
             </div>
-            <div class="product-item" onclick="openTelegram()">
+            <div class="product-item" onclick="openTelegramWithProduct('ሽሮ')">
               <div class="product-emoji">🥣</div>
               <div class="product-name">ሽሮ</div>
             </div>
-            <div class="product-item" onclick="openTelegram()">
+            <div
+              class="product-item"
+              onclick="openTelegramWithProduct('ወለላ ማር')"
+            >
               <div class="product-emoji">🍯</div>
               <div class="product-name">ወለላ ማር</div>
             </div>
-            <div class="product-item" onclick="openTelegram()">
+            <div
+              class="product-item"
+              onclick="openTelegramWithProduct('የእንጀራ ማር')"
+            >
               <div class="product-emoji">🫓</div>
               <div class="product-name">የእንጀራ ማር</div>
             </div>
-            <div class="product-item" onclick="openTelegram()">
+            <div class="product-item" onclick="openTelegramWithProduct('ኬኔቶ')">
               <div class="product-emoji">🌰</div>
               <div class="product-name">ኬኔቶ</div>
             </div>
@@ -582,7 +587,17 @@
         window.location.href = "tel:" + number;
       }
 
-      // Function to open Telegram
+      // Function to open Telegram with product name in message
+      function openTelegramWithProduct(productName) {
+        const username = "tigist042329";
+        const message = `Hello! I am interested in ${productName}. Please provide more information.`;
+        const url = `https://t.me/${username}?start=${encodeURIComponent(
+          message
+        )}`;
+        window.open(url, "_blank");
+      }
+
+      // Original function to open Telegram (without product)
       function openTelegram() {
         window.open("https://t.me/tigist042329", "_blank");
       }
@@ -606,11 +621,14 @@
         // Add click handlers for products
         const products = document.querySelectorAll(".product, .product-item");
         products.forEach((product) => {
-          product.addEventListener("click", openTelegram);
+          product.addEventListener("click", function () {
+            const productName = this.querySelector(
+              ".product-name, .product-emoji + .product-name"
+            ).textContent;
+            openTelegramWithProduct(productName);
+          });
         });
       });
     </script>
   </body>
 </html>
-
-
