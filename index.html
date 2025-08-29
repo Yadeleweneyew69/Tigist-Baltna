@@ -349,7 +349,6 @@
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         gap: 15px;
         margin-top: 20px;
-        margin-bottom: 20px;
       }
 
       .product-item {
@@ -379,123 +378,6 @@
         margin-top: 5px;
         font-style: italic;
       }
-
-      /* Custom modal styles */
-      .modal {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.7);
-        z-index: 1000;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .modal-content {
-        background-color: white;
-        padding: 25px;
-        border-radius: 12px;
-        text-align: center;
-        max-width: 400px;
-        width: 90%;
-        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-      }
-
-      .modal-title {
-        font-size: 1.4rem;
-        margin-bottom: 15px;
-        color: #2c3e50;
-      }
-
-      .modal-message {
-        margin-bottom: 20px;
-        line-height: 1.5;
-      }
-
-      .modal-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-      }
-
-      .modal-btn {
-        padding: 10px 20px;
-        border-radius: 50px;
-        border: none;
-        cursor: pointer;
-        font-weight: 600;
-        transition: all 0.3s;
-      }
-
-      .modal-btn-primary {
-        background-color: #4a00e0;
-        color: white;
-      }
-
-      .modal-btn-primary:hover {
-        background-color: #3575fc;
-      }
-
-      .modal-btn-secondary {
-        background-color: #f8f9fa;
-        color: #495057;
-        border: 1px solid #dee2e6;
-      }
-
-      .modal-btn-secondary:hover {
-        background-color: #e9ecef;
-      }
-
-      .product-highlight {
-        font-weight: bold;
-        color: #2c3e50;
-        background-color: #e8f4fc;
-        padding: 3px 6px;
-        border-radius: 4px;
-      }
-
-      /* Loading indicator */
-      .loading {
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        border: 3px solid rgba(255, 255, 255, 0.3);
-        border-radius: 50%;
-        border-top-color: #fff;
-        animation: spin 1s ease-in-out infinite;
-        margin-right: 10px;
-      }
-
-      @keyframes spin {
-        to {
-          transform: rotate(360deg);
-        }
-      }
-
-      .telegram-instructions {
-        background-color: #e8f4fc;
-        padding: 15px;
-        border-radius: 10px;
-        margin-top: 20px;
-        font-size: 0.9rem;
-      }
-
-      .telegram-instructions h4 {
-        margin-bottom: 10px;
-        color: #2c3e50;
-      }
-
-      .telegram-instructions ol {
-        text-align: left;
-        padding-left: 20px;
-      }
-
-      .telegram-instructions li {
-        margin-bottom: 8px;
-      }
     </style>
   </head>
   <body>
@@ -503,50 +385,55 @@
       <header>
         <h1>Tigist Baltena</h1>
         <div class="amharic-title">ትግስት ባልትና</div>
-        <p class="subtitle">Premium Ethiopian Products & Delivery Service</p>
+        <p class="subtitle">Ethiopian Products & Delivery Service</p>
       </header>
 
       <div class="content">
         <div class="section">
           <h2>Our Products</h2>
-          <p class="click-hint">(Click on any product to order via Telegram)</p>
+          <p class="click-hint">
+            (Click on any products and write any order on Telegram)
+          </p>
           <div class="products">
-            <div class="product" data-product="ምጥን የጠላ እህል">
+            <div class="product" onclick="openTelegram()">
               <div class="product-icon">🌾</div>
               <div class="product-name">ምጥን የጠላ እህል</div>
             </div>
-            <div class="product" data-product="ድፍድፍ">
+            <div class="product" onclick="openTelegram()">
               <div class="product-icon">🥣</div>
               <div class="product-name">ድፍድፍ</div>
             </div>
-            <div class="product" data-product="ቅቤ">
+            <div class="product" onclick="openTelegram()">
               <div class="product-icon">🫕</div>
               <div class="product-name">ቅቤ</div>
             </div>
-            <div class="product" data-product="የሐበሻ አረቄ">
+            <div class="product" onclick="openTelegram()">
               <div class="product-icon">🧂</div>
               <div class="product-name">የሐበሻ አረቄ</div>
             </div>
           </div>
 
+          <h3 style="margin-top: 30px; text-align: center">
+            Additional Products
+          </h3>
           <div class="product-grid">
-            <div class="product-item" data-product="በርበሬ">
+            <div class="product-item" onclick="openTelegram()">
               <div class="product-emoji">🌿</div>
               <div class="product-name">በርበሬ</div>
             </div>
-            <div class="product-item" data-product="ሽሮ">
+            <div class="product-item" onclick="openTelegram()">
               <div class="product-emoji">🥣</div>
               <div class="product-name">ሽሮ</div>
             </div>
-            <div class="product-item" data-product="ወለላ ማር">
+            <div class="product-item" onclick="openTelegram()">
               <div class="product-emoji">🍯</div>
               <div class="product-name">ወለላ ማር</div>
             </div>
-            <div class="product-item" data-product="የእንጀራ ማር">
+            <div class="product-item" onclick="openTelegram()">
               <div class="product-emoji">🫓</div>
               <div class="product-name">የእንጀራ ማር</div>
             </div>
-            <div class="product-item" data-product="ኬኔቶ">
+            <div class="product-item" onclick="openTelegram()">
               <div class="product-emoji">🌰</div>
               <div class="product-name">ኬኔቶ</div>
             </div>
@@ -592,16 +479,6 @@
               <div class="btn">Open Telegram</div>
             </div>
           </div>
-
-          <div class="telegram-instructions">
-            <h4>How to order via Telegram:</h4>
-            <ol>
-              <li>Click on any product above</li>
-              <li>Confirm your order in the popup</li>
-              <li>Telegram will open with a pre-filled message</li>
-              <li>Send the message to complete your order</li>
-            </ol>
-          </div>
         </div>
 
         <div class="section">
@@ -638,88 +515,7 @@
       </footer>
     </div>
 
-    <!-- Modal for Telegram confirmation -->
-    <div class="modal" id="telegramModal">
-      <div class="modal-content">
-        <h3 class="modal-title">Order Product via Telegram</h3>
-        <p class="modal-message">
-          You're about to order:
-          <span class="product-highlight" id="productName"></span>. This will
-          open Telegram to send your order.
-        </p>
-        <div class="modal-buttons">
-          <button class="modal-btn modal-btn-secondary" onclick="closeModal()">
-            Cancel
-          </button>
-          <button
-            class="modal-btn modal-btn-primary"
-            id="telegramBtn"
-            onclick="confirmTelegram()"
-          >
-            <span id="btnText">Open Telegram</span>
-            <span id="btnLoading" class="loading" style="display: none"></span>
-          </button>
-        </div>
-      </div>
-    </div>
-
     <script>
-      // Telegram username
-      const telegramUsername = "tigist042329";
-      let selectedProduct = "";
-
-      // Function to open Telegram with product name in message
-      function openTelegramWithProduct(productName) {
-        selectedProduct = productName;
-        document.getElementById("productName").textContent = productName;
-        document.getElementById("telegramModal").style.display = "flex";
-      }
-
-      function confirmTelegram() {
-        // Show loading indicator
-        document.getElementById("btnText").style.display = "none";
-        document.getElementById("btnLoading").style.display = "inline-block";
-
-        if (selectedProduct) {
-          // Encode the message with the product name
-          const message = encodeURIComponent(
-            `Hello! I would like to order: ${selectedProduct}`
-          );
-
-          // Create the Telegram URL - using the correct format for user accounts
-          const telegramUrl = `https://t.me/${telegramUsername}?start=${message}`;
-
-          // Open Telegram in a new tab after a short delay
-          setTimeout(() => {
-            window.open(telegramUrl, "_blank");
-            closeModal();
-          }, 800);
-        } else {
-          // Fallback if no product selected
-          setTimeout(() => {
-            window.open(`https://t.me/${telegramUsername}`, "_blank");
-            closeModal();
-          }, 800);
-        }
-      }
-
-      function closeModal() {
-        document.getElementById("telegramModal").style.display = "none";
-        // Reset button state
-        document.getElementById("btnText").style.display = "inline";
-        document.getElementById("btnLoading").style.display = "none";
-      }
-
-      // Function to handle phone calls
-      function callPhone(number) {
-        window.location.href = "tel:" + number;
-      }
-
-      // Function to open Telegram (generic, without product)
-      function openTelegram() {
-        window.open(`https://t.me/${telegramUsername}`, "_blank");
-      }
-
       // Generate QR codes with all contact information
       function generateQR() {
         // Product list and contact info
@@ -741,7 +537,7 @@
 
 ☎️ 0916603839 ወይም
 ☎️ 0712001030 ላይ ይደውሉ  ለበለጠ መረጃ ይጠይቁ
-📱 Telegram account: https://t.me/${telegramUsername}`;
+📱 Telegram account: https://t.me/tigist042329`;
 
         // Generate QR codes
         new QRCode(document.getElementById("qrcode1"), {
@@ -772,7 +568,7 @@
         });
 
         new QRCode(document.getElementById("qrcode4"), {
-          text: `https://t.me/${telegramUsername}`,
+          text: "https://t.me/tigist042329",
           width: 120,
           height: 120,
           colorDark: "#000000",
@@ -781,31 +577,21 @@
         });
       }
 
-      // Add event listeners for products
-      function setupProductListeners() {
-        const products = document.querySelectorAll(".product, .product-item");
-        products.forEach((product) => {
-          product.addEventListener("click", function () {
-            const productName = this.getAttribute("data-product");
-            openTelegramWithProduct(productName);
-          });
-        });
+      // Function to handle phone calls
+      function callPhone(number) {
+        window.location.href = "tel:" + number;
       }
 
-      // Close modal when clicking outside
-      window.addEventListener("click", function (event) {
-        const modal = document.getElementById("telegramModal");
-        if (event.target === modal) {
-          closeModal();
-        }
-      });
+      // Function to open Telegram
+      function openTelegram() {
+        window.open("https://t.me/tigist042329", "_blank");
+      }
 
-      // Generate QR code and setup listeners on page load
-      window.onload = function () {
-        generateQR();
-        setupProductListeners();
+      // Generate QR code on page load
+      window.onload = generateQR;
 
-        // Add touch event listeners for better mobile experience
+      // Add touch event listeners for better mobile experience
+      document.addEventListener("DOMContentLoaded", function () {
         const buttons = document.querySelectorAll(".btn");
         buttons.forEach((button) => {
           button.addEventListener("touchstart", function () {
@@ -816,7 +602,15 @@
             this.style.opacity = "1";
           });
         });
-      };
+
+        // Add click handlers for products
+        const products = document.querySelectorAll(".product, .product-item");
+        products.forEach((product) => {
+          product.addEventListener("click", openTelegram);
+        });
+      });
     </script>
   </body>
 </html>
+
+
